@@ -384,109 +384,6 @@ a.link-white { color: #fff; }
   position: relative;
 }
 
-/* ── IFRAME MODAL ── */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.88);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  animation: fadeIn .2s ease;
-}
-.modal-overlay.active { display: flex; }
-@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-.modal-box {
-  background: #111;
-  border: 1px solid #2a2a2a;
-  border-radius: 4px;
-  width: 100%;
-  max-width: 1000px;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  animation: slideUp .25s ease;
-}
-@keyframes slideUp { from { transform: translateY(20px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid #222;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.modal-title { font-family: 'DM Mono', monospace; font-size: 12px; color: #c9a84c; letter-spacing: 0.12em; text-transform: uppercase; }
-.modal-url { font-family: 'DM Mono', monospace; font-size: 11px; color: #555; }
-.modal-close {
-  background: none;
-  border: 1px solid #333;
-  color: #888;
-  font-size: 18px;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all .2s;
-  flex-shrink: 0;
-}
-.modal-close:hover { border-color: #888; color: #fff; }
-.modal-frame { flex: 1; position: relative; min-height: 300px; }
-.modal-frame iframe {
-  width: 100%;
-  height: 100%;
-  min-height: 520px;
-  border: none;
-  background: #fff;
-}
-.modal-blocked {
-  display: none;
-  position: absolute;
-  inset: 0;
-  background: #0d0d0d;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
-  text-align: center;
-  padding: 40px;
-}
-.modal-blocked.show { display: flex; }
-.modal-blocked-icon { font-size: 48px; color: #333; }
-.modal-blocked h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #fff; }
-.modal-blocked p { font-size: 14px; color: #666; max-width: 360px; line-height: 1.6; }
-.modal-blocked a { color: #c9a84c; }
-.modal-loader {
-  position: absolute;
-  inset: 0;
-  background: #0d0d0d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 16px;
-  z-index: 2;
-  transition: opacity .3s;
-}
-.modal-loader.hidden { opacity: 0; pointer-events: none; }
-.loader-spinner {
-  width: 32px;
-  height: 32px;
-  border: 2px solid #222;
-  border-top-color: #c4622d;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loader-label { font-family: 'DM Mono', monospace; font-size: 11px; color: #444; letter-spacing: 0.12em; }
-
 /* ── DESIGN SYSTEM ── */
 .color-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .color-swatch { height: 72px; border-radius: 4px; margin-bottom: 10px; }
@@ -693,30 +590,7 @@ a.link-white { color: #fff; }
   <a href="#rollout" onclick="closeMobileNav()">07 — Rollout</a>
 </div>
 
-<!-- ── IFRAME MODAL ── -->
-<div class="modal-overlay" id="previewModal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div>
-        <div class="modal-title" id="modalTitle">Preview</div>
-        <div class="modal-url" id="modalUrl"></div>
-      </div>
-      <button class="modal-close" id="modalClose">✕</button>
-    </div>
-    <div class="modal-frame">
-      <div class="modal-loader" id="modalLoader">
-        <div class="loader-spinner"></div>
-        <div class="loader-label">Loading preview…</div>
-      </div>
-      <div class="modal-blocked" id="modalBlocked">
-        <div class="modal-blocked-icon">🔒</div>
-        <h3>Preview blocked</h3>
-        <p>This site doesn't allow embedding. <a id="modalBlockedLink" href="#" target="_blank">Open it directly ↗</a></p>
-      </div>
-      <iframe id="previewIframe" title="Site Preview" sandbox="allow-scripts allow-same-origin allow-forms" referrerpolicy="no-referrer"></iframe>
-    </div>
-  </div>
-</div>
+
 
 <!-- ── COVER ── -->
 <section class="cover">
@@ -874,12 +748,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">Organimo</div>
           <div class="ref-card-tagline">Sea Moss & Bladderwrack — "You Are Limitless" · Wellness Supplement Brand</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('organimo.com','https://organimo.com','Organimo')">⊡ Preview Site</button>
-          <a href="https://organimo.com" target="_blank" class="ref-card-url">↗ organimo.com</a>
+        <div class="ref-card-actions"><a href="https://organimo.com" target="_blank" class="ref-card-url">↗ organimo.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#0d0d0d; color:#c9a84c; font-family:'Cormorant Garamond',serif; font-size:clamp(13px,2vw,18px); font-style:italic; height:90px; letter-spacing:0.02em; cursor:pointer;" onclick="openPreview('organimo.com','https://organimo.com','Organimo')">
+      <div class="preview-strip" style="background:#0d0d0d; color:#c9a84c; font-family:'Cormorant Garamond',serif; font-size:clamp(13px,2vw,18px); font-style:italic; height:90px; letter-spacing:0.02em;">
         <span>"FROM BODY &nbsp;·&nbsp; TO MIND &nbsp;·&nbsp; Limitless begins here."</span>
       </div>
       <div class="ref-card-body">
@@ -907,12 +779,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">Function Health</div>
           <div class="ref-card-tagline">100 Lab Tests. Real-Time Health Data. "100 Healthy Years." · Diagnostic Platform</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('functionhealth.com','https://www.functionhealth.com','Function Health')">⊡ Preview Site</button>
-          <a href="https://www.functionhealth.com" target="_blank" class="ref-card-url">↗ functionhealth.com</a>
+        <div class="ref-card-actions"><a href="https://www.functionhealth.com" target="_blank" class="ref-card-url">↗ functionhealth.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#0a0a0a; color:#444; height:90px; cursor:pointer;" onclick="openPreview('functionhealth.com','https://www.functionhealth.com','Function Health')">
+      <div class="preview-strip" style="background:#0a0a0a; color:#444; height:90px;">
         <span>Dark · Clinical data cards · Lab result UI · Extreme whitespace · "Know your numbers"</span>
       </div>
       <div class="ref-card-body">
@@ -939,12 +809,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">Levels Health</div>
           <div class="ref-card-tagline">"See How Food Affects Your Health." · CGM + Metabolic Data Platform</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('levels.com','https://www.levels.com','Levels Health')">⊡ Preview Site</button>
-          <a href="https://www.levels.com" target="_blank" class="ref-card-url">↗ levels.com</a>
+        <div class="ref-card-actions"><a href="https://www.levels.com" target="_blank" class="ref-card-url">↗ levels.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#0e1117; color:rgba(50,230,100,0.25); height:90px; cursor:pointer;" onclick="openPreview('levels.com','https://www.levels.com','Levels Health')">
+      <div class="preview-strip" style="background:#0e1117; color:rgba(50,230,100,0.25); height:90px;">
         <span>Dark mode · Glucose curve charts · Green metabolic data · No stock photos · Science as design</span>
       </div>
       <div class="ref-card-body">
@@ -971,12 +839,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">WHOOP</div>
           <div class="ref-card-tagline">"Unlock You." · Wearable Performance & Recovery Platform</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('whoop.com','https://www.whoop.com','WHOOP')">⊡ Preview Site</button>
-          <a href="https://www.whoop.com" target="_blank" class="ref-card-url">↗ whoop.com</a>
+        <div class="ref-card-actions"><a href="https://www.whoop.com" target="_blank" class="ref-card-url">↗ whoop.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#000; color:rgba(255,255,255,0.18); height:90px; cursor:pointer;" onclick="openPreview('whoop.com','https://www.whoop.com','WHOOP')">
+      <div class="preview-strip" style="background:#000; color:rgba(255,255,255,0.18); height:90px;">
         <span>All-black · Recovery score readouts · Bold white type · Athletic editorial photography · "Know Yourself Better"</span>
       </div>
       <div class="ref-card-body">
@@ -1003,12 +869,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">Forward Health</div>
           <div class="ref-card-tagline">"The Future of Healthcare." · AI-Powered Primary Care</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('goforward.com','https://www.goforward.com','Forward Health')">⊡ Preview Site</button>
-          <a href="https://www.goforward.com" target="_blank" class="ref-card-url">↗ goforward.com</a>
+        <div class="ref-card-actions"><a href="https://www.goforward.com" target="_blank" class="ref-card-url">↗ goforward.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#f7f7f7; border:1px solid #e8e8e8; color:#bbb; height:90px; cursor:pointer;" onclick="openPreview('goforward.com','https://www.goforward.com','Forward Health')">
+      <div class="preview-strip" style="background:#f7f7f7; border:1px solid #e8e8e8; color:#bbb; height:90px;">
         <span>All-white · Extreme whitespace · Clinical type · "Apply" not "Sign Up" · Exclusivity by design</span>
       </div>
       <div class="ref-card-body">
@@ -1035,12 +899,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">Apple</div>
           <div class="ref-card-tagline">apple.com/iphone · Product Presentation & Experience Design</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('apple.com/iphone','https://www.apple.com/iphone','Apple iPhone')">⊡ Preview Site</button>
-          <a href="https://www.apple.com/iphone" target="_blank" class="ref-card-url">↗ apple.com/iphone</a>
+        <div class="ref-card-actions"><a href="https://www.apple.com/iphone" target="_blank" class="ref-card-url">↗ apple.com/iphone</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#fff; border:1px solid #e8e8e8; color:#bbb; height:90px; cursor:pointer;" onclick="openPreview('apple.com/iphone','https://www.apple.com/iphone','Apple iPhone')">
+      <div class="preview-strip" style="background:#fff; border:1px solid #e8e8e8; color:#bbb; height:90px;">
         <span>White · One idea per screen · Scroll-triggered reveals · Giant type · No navigation away</span>
       </div>
       <div class="ref-card-body">
@@ -1067,12 +929,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">Dr. Mark Hyman</div>
           <div class="ref-card-tagline">"Young Forever." · Functional Medicine Thought Leader</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('drhyman.com','https://drhyman.com','Dr. Mark Hyman')">⊡ Preview Site</button>
-          <a href="https://drhyman.com" target="_blank" class="ref-card-url">↗ drhyman.com</a>
+        <div class="ref-card-actions"><a href="https://drhyman.com" target="_blank" class="ref-card-url">↗ drhyman.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#1c3a2b; color:rgba(255,255,255,0.2); height:90px; cursor:pointer;" onclick="openPreview('drhyman.com','https://drhyman.com','Dr. Mark Hyman')">
+      <div class="preview-strip" style="background:#1c3a2b; color:rgba(255,255,255,0.2); height:90px;">
         <span>Dark green · Founder portrait as hero · Bold serif · Podcast + Books + Programs · Authority ecosystem</span>
       </div>
       <div class="ref-card-body">
@@ -1098,12 +958,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">Noom</div>
           <div class="ref-card-tagline">"Health for real humans." · Psychology-Based Weight Management</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('noom.com','https://www.noom.com','Noom')">⊡ Preview Site</button>
-          <a href="https://www.noom.com" target="_blank" class="ref-card-url">↗ noom.com</a>
+        <div class="ref-card-actions"><a href="https://www.noom.com" target="_blank" class="ref-card-url">↗ noom.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#f5f0e8; border:1px solid #e8e0d0; color:#bbb; height:90px; cursor:pointer;" onclick="openPreview('noom.com','https://www.noom.com','Noom')">
+      <div class="preview-strip" style="background:#f5f0e8; border:1px solid #e8e0d0; color:#bbb; height:90px;">
         <span>Warm white · Bold serif · Problem-first copy · Quiz as primary CTA · Highest converting health homepage</span>
       </div>
       <div class="ref-card-body">
@@ -1129,12 +987,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">ZOE</div>
           <div class="ref-card-tagline">"World's largest nutrition science study." · Personalised Nutrition · Tim Spector</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('joinzoe.com','https://joinzoe.com','ZOE')">⊡ Preview Site</button>
-          <a href="https://joinzoe.com" target="_blank" class="ref-card-url">↗ joinzoe.com</a>
+        <div class="ref-card-actions"><a href="https://joinzoe.com" target="_blank" class="ref-card-url">↗ joinzoe.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#1a1aff; color:rgba(255,255,255,0.15); height:90px; cursor:pointer;" onclick="openPreview('joinzoe.com','https://joinzoe.com','ZOE')">
+      <div class="preview-strip" style="background:#1a1aff; color:rgba(255,255,255,0.15); height:90px;">
         <span>Deep blue · Clean sans-serif · Video testimonials · Scientific credibility in approachable language</span>
       </div>
       <div class="ref-card-body">
@@ -1160,12 +1016,10 @@ a.link-white { color: #fff; }
           <div class="ref-card-title">Ritual</div>
           <div class="ref-card-tagline">"You deserve to know what's in your body." · Science-Backed Supplements</div>
         </div>
-        <div class="ref-card-actions">
-          <button class="ref-preview-btn" onclick="openPreview('ritual.com','https://ritual.com','Ritual')">⊡ Preview Site</button>
-          <a href="https://ritual.com" target="_blank" class="ref-card-url">↗ ritual.com</a>
+        <div class="ref-card-actions"><a href="https://ritual.com" target="_blank" class="ref-card-url">↗ ritual.com</a>
         </div>
       </div>
-      <div class="preview-strip" style="background:#fcfaf6; border:1px solid #e8e8e8; color:#bbb; height:90px; cursor:pointer;" onclick="openPreview('ritual.com','https://ritual.com','Ritual')">
+      <div class="preview-strip" style="background:#fcfaf6; border:1px solid #e8e8e8; color:#bbb; height:90px;">
         <span>Off-white · Yellow accent · Ingredient transparency · Editorial photography · "Made Traceable"</span>
       </div>
       <div class="ref-card-body">
@@ -1532,79 +1386,12 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ── HAMBURGER ──
-const hamBtn = document.getElementById('hamBtn');
-const mobileNav = document.getElementById('mobileNav');
-hamBtn.addEventListener('click', () => {
-  mobileNav.classList.toggle('open');
+document.getElementById('hamBtn').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.toggle('open');
 });
-function closeMobileNav() { mobileNav.classList.remove('open'); }
+function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
 
-// ── IFRAME MODAL ──
-const modal = document.getElementById('previewModal');
-const iframe = document.getElementById('previewIframe');
-const loader = document.getElementById('modalLoader');
-const blocked = document.getElementById('modalBlocked');
-const modalTitle = document.getElementById('modalTitle');
-const modalUrl = document.getElementById('modalUrl');
-const modalBlockedLink = document.getElementById('modalBlockedLink');
-let blockTimeout;
 
-function openPreview(domain, url, title) {
-  modalTitle.textContent = title;
-  modalUrl.textContent = domain;
-  modalBlockedLink.href = url;
-
-  // Reset state
-  loader.classList.remove('hidden');
-  blocked.classList.remove('show');
-  iframe.src = '';
-
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-
-  // Load iframe after tiny delay
-  setTimeout(() => {
-    iframe.src = url;
-  }, 100);
-
-  // If no load event fires after 8s, show fallback
-  clearTimeout(blockTimeout);
-  blockTimeout = setTimeout(() => {
-    loader.classList.add('hidden');
-    blocked.classList.add('show');
-  }, 8000);
-}
-
-// Iframe load events
-iframe.addEventListener('load', () => {
-  clearTimeout(blockTimeout);
-  // Try to detect if blocked by checking contentDocument
-  try {
-    const doc = iframe.contentDocument || iframe.contentWindow.document;
-    if (!doc || doc.body === null || doc.body.innerHTML === '') throw new Error('blocked');
-    loader.classList.add('hidden');
-  } catch (e) {
-    loader.classList.add('hidden');
-    blocked.classList.add('show');
-  }
-});
-
-iframe.addEventListener('error', () => {
-  clearTimeout(blockTimeout);
-  loader.classList.add('hidden');
-  blocked.classList.add('show');
-});
-
-function closeModal() {
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-  clearTimeout(blockTimeout);
-  iframe.src = '';
-}
-
-document.getElementById('modalClose').addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
 </html>
